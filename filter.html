@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="Planning a trip in France? Visit Fab Travel to discover the best excursions." name="description"/>
+    <link as="image" fetchpriority="high" href="assets/img/cite_new.webp" rel="preload" type="image/webp"/>
+    <link href="assets/css/styles.css" rel="stylesheet"/>
+    <link href="assets/css/filter.css" rel="stylesheet"/>
+    <link href="assets/favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="114x114"/>
+    <link href="assets/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+    <link href="assets/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+    <link href="assets/favicon/site.webmanifest" rel="manifest"/>
+    <link color="#5bbad5" href="assets/favicon/safari-pinned-tab.svg" rel="mask-icon"/>
+    <meta content="#2b5797" name="msapplication-TileColor"/>
+    <meta content="#ffffff" name="theme-color"/>
+    <title>Fab Travel</title>
+</head>
+
+<body>
+<div class="wrapper">
+    <header class="header header_filter">
+        <a class="header__logo" href="index.html">
+            <img alt="Company logo" src="assets/img/logo-white.svg"/>
+        </a>
+        <div class="header__menu menu">
+            <div class="menu__burger">
+                <span></span>
+            </div>
+            <nav class="menu__body">
+                <ul class="menu__list">
+                    <li><a class="menu__link" href="index.html">Home</a></li>
+                    <li><a class="menu__link" href="#">Excursions</a></li>
+                </ul>
+            </nav>
+        </div>
+        <h1 class="header__title header__title_filter">Our trips</h1>
+    </header>
+    <main class="main">
+        <aside class="sidebar">
+            <h2 class="sidebar__title">Filter</h2>
+            <div class="sidebar__filter filter" id="filters">
+                <div class="filter__item">
+                    <div class="filter__item_subtitle">
+                        <h3>Price</h3>
+                        <span class="filter__item_spoiler">×</span>
+                    </div>
+                    <div class="filter__item_content filter__price">
+                        <div class="filter__price_inputs">
+                            <label for="pricemin"></label>
+                            <input class="filter-input filter-price" id="pricemin" step="5" type="number"/>
+                            <label for="pricemax"></label>
+                            <input class="filter-input filter-price" id="pricemax" step="5" type="number"/>
+                        </div>
+                        <div class="filter__price_range">
+                            <span class="filter-slider-track"></span>
+                            <label for="rangemin"></label>
+                            <input class="filter-range" id="rangemin" max="100" min="0" type="range"/>
+                            <label for="rangemax"></label>
+                            <input class="filter-range" id="rangemax" max="100" min="0" type="range"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter__item">
+                    <div class="filter__item_subtitle">
+                        <h3>Longitude</h3>
+                        <span class="filter__item_spoiler">×</span>
+                    </div>
+                    <div class="filter__item_content filter__quantity">
+                        <label for="longitude"></label>
+                        <input class="filter-input" id="longitude" min="0" style="margin-right: 0;" type="number"
+                               value="0"/>
+                        ——
+                        <input class="filter-input" id="longitude1" min="0" type="number" value="100"/>
+                    </div>
+                </div>
+                <div class="filter__item">
+                    <div class="filter__item_subtitle">
+                        <h3>latitude</h3>
+                        <span class="filter__item_spoiler">×</span>
+                    </div>
+                    <div class="filter__item_content filter__quantity">
+                        <label for="latitude"></label>
+                        <input class="filter-input" id="latitude" min="0" style="margin-right: 0;" type="number"
+                               value="0"/>
+                        ——
+                        <input class="filter-input" id="latitude1" min="0" type="number" value="100"/>
+                    </div>
+                </div>
+                <div class="filter__item">
+                    <div class="filter__item_subtitle">
+                        <h3>Quantity</h3>
+                        <span class="filter__item_spoiler">×</span>
+                    </div>
+                    <div class="filter__item_content filter__quantity">
+                        <span onclick="changeQuantity('minus')">−</span>
+                        <label for="nbpers"></label>
+                        <input class="filter-input" id="nbpers" min="1" type="number" value="1"/>
+                        <span onclick="changeQuantity('plus')">+</span>
+                        <div id="persons">person</div>
+                    </div>
+                </div>
+                <div class="filter__item">
+                    <div class="filter__item_subtitle">
+                        <h3>Transport</h3>
+                        <span class="filter__item_spoiler">×</span>
+                    </div>
+                    <div class="filter__item_content filter__transport" id="type">
+                        <label for="foot">
+                            <input id="foot" name="extype" type="radio" value="foot"/>on foot &#128694;
+                        </label>
+                        <label for="bus">
+                            <input id="bus" name="extype" type="radio" value="bus"/>by bus &#128652;
+                        </label>
+                    </div>
+                </div>
+                <div class="filter__item">
+                    <div class="filter__item_subtitle">
+                        <h3>Destination</h3>
+                        <span class="filter__item_spoiler">×</span>
+                    </div>
+                    <div class="filter__item_content filter__destination">
+                        <label for="dest"></label>
+                        <select class="filter-input" id="dest" name="destination">
+                            <option value="">all</option>
+                            <option value="versailles">Versailles</option>
+                            <option value="colmar">Colmar</option>
+                            <option value="lyon">Lyon</option>
+                            <option value="marseille">Marseille</option>
+                            <option value="montmartre">Montmartre</option>
+                            <option value="montpellier">Montpellier</option>
+                            <option value="nice">Nice</option>
+                            <option value="paris">Paris</option>
+                            <option value="rouen">Rouen</option>
+                            <option value="strasbourg">Strasbourg</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter__item">
+                    <div class="filter__item_subtitle">
+                        <h3>Duration</h3>
+                        <span class="filter__item_spoiler">×</span>
+                    </div>
+                    <div class="filter__item_content filter__duration" id="duration">
+                        <label for="duration_1h">
+                            <input id="duration_1h" name="duration" type="checkbox" value="1"/>1 hour</label>
+                        <label for="duration_2h">
+                            <input id="duration_2h" name="duration" type="checkbox" value="2"/>2 hours</label>
+                        <label for="duration_3h">
+                            <input id="duration_3h" name="duration" type="checkbox" value="3"/>3 hours</label>
+                        <label for="duration_4h">
+                            <input id="duration_4h" name="duration" type="checkbox" value="4"/>4 hours</label>
+                        <label for="duration_5h">
+                            <input id="duration_5h" name="duration" type="checkbox" value="5"/>5 hours</label>
+                        <label for="duration_6h">
+                            <input id="duration_6h" name="duration" type="checkbox" value="6"/>6 hours</label>
+                        <label for="duration_7h">
+                            <input id="duration_7h" name="duration" type="checkbox" value="7"/>7 hours</label>
+                        <label for="duration_8h">
+                            <input id="duration_8h" name="duration" type="checkbox" value="8"/>8 hours</label>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar__result" id="result"></div>
+            <div class="sidebar__reset">
+                <span>×</span>
+                RESET ALL
+            </div>
+        </aside>
+        <div class="excursions">
+            <h2 class="excursions__title" style="display: flex; justify-content: space-between;">
+                Popular sightseeing excursions
+                <a class="button" href="add.html">add new excursion</a>
+                <button class="button" id="download">download</button>
+            </h2>
+            <div class="excursions__container" id="excursions__container"></div>
+        </div>
+    </main>
+    <footer class="footer">
+        <a class="footer__logo" href="index.html">
+            <img alt="Company logo" class="footer__img" src="assets/img/footer_logo_color.svg"/>
+        </a>
+        <div class="footer__social">
+            <a href="https://vk.com" target="_blank">
+                <img alt="Vkontakte" class="footer__vkontakte" src="assets/img/vkontakte_logo.svg"/>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <img alt="Instagram" class="footer__instagram" src="assets/img/instagram_logo.svg"/>
+            </a>
+            <a href="https://www.facebook.com" target="_blank">
+                <img alt="Facebook" class="footer__facebook" src="assets/img/facebook_logo.svg"/>
+            </a>
+        </div>
+        <div class="footer__menu">
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="filter.html">Excursions</a></li>
+            </ul>
+            <ul class="tels">
+                <li>
+                    <img alt="whatsapp" src="assets/img/whatsapp.svg"/>
+                    <a href="https://wa.me/+33142967000" target="_blank">+33 1 42 96 70 00</a>
+                </li>
+                <li>
+                    <img alt="telegram" src="assets/img/telegram.svg"/>
+                    <a href="https://telegram.im/@USERNAME" target="_blank">+33 1 42 96 70 00</a>
+                </li>
+                <li class="social_mail">
+                    <img alt="email" src="assets/img/email.svg"/>
+                    <a href="mailto:office@fabtravel.com">office@fabtravel.com</a>
+                </li>
+            </ul>
+            <ul class="footer__social_big">
+                <li>
+                    <img alt="email" src="assets/img/email.svg"/>
+                    <a href="mailto:office@fabtravel.com">office@fabtravel.com</a>
+                </li>
+                <li class="footer__social_big-icons">
+                    <a href="https://vk.com" target="_blank">
+                        <img alt="Vkontakte" class="footer__vkontakte" src="assets/img/vkontakte_logo.svg"/>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank">
+                        <img alt="Instagram" class="footer__instagram" src="assets/img/instagram_logo.svg"/>
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank">
+                        <img alt="Facebook" class="footer__facebook" src="assets/img/facebook_logo.svg"/>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+<script src="assets/js/filter.js"></script>
+</body>
+
+</html>

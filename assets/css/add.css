@@ -1,0 +1,27 @@
+.form {
+    margin-left: 450px;
+}
+
+.form-item {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    width: 420px;
+    justify-content: space-between;
+}
+
+label {
+    font-weight: bold;
+    width: 100px;
+}
+
+input,
+select,
+textarea {
+    margin-left: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    margin-right: 10px;
+    width: 300px;
+}
