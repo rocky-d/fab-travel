@@ -1,9 +1,107 @@
 .main {
     display: flex;
+    flex-direction: column; /* Change to column to stack elements vertically */
     justify-content: center;
     align-items: center;
+    margin-top: 20px; /* Optional: Add some top margin */
 }
 
+.excursions__container,
+#commentForm,
+.excursionreviews__container {
+    width: 100%;
+    max-width: 900px; /* Optional: Set a max width for all elements */
+    margin-bottom: 20px; /* Space between each section */
+}
+
+/* Rest of your existing CSS */
 .excursions {
     width: 900px;
+}
+
+/* CSS for the comment form */
+#commentForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* CSS for the textarea */
+#commentForm textarea {
+    width: 300%; /* Increase width of the textarea */
+    max-width: 800px; /* Increase maximum width of the textarea */
+    padding: 15px; /* Padding inside the textarea */
+    border-radius: 10px; /* Rounded corners */
+    border: 1px solid #ccc; /* Border color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-size: 16px; /* Font size */
+    font-family: inherit; /* Inherit font from parent */
+    resize: vertical; /* Allow vertical resizing */
+    margin-bottom: 10px; /* Space between textarea and button */
+    box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+/* CSS for the submit button */
+#commentForm button {
+    padding: 10px 20px; /* Padding inside the button */
+    border-radius: 20px; /* Rounded corners */
+    border: none; /* Remove default border */
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Button text color */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+#commentForm button:hover {
+    background-color: #0056b3; /* Darker background color on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    #commentForm textarea {
+        width: 90%; /* Increase width on smaller screens */
+    }
+}
+
+/* CSS for the review container */
+.excursionreviews__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* CSS for each review bubble */
+.excursionreview_review {
+    background-color: #f1f1f1; /* Light grey background */
+    border-radius: 20px; /* Rounded corners */
+    padding: 15px 20px; /* Padding inside the bubble */
+    margin: 10px 0; /* Space between bubbles */
+    width: 300%;
+    max-width: 800px; /* Maximum width of the bubble */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    position: relative;
+    word-wrap: break-word; /* Ensures long words break properly */
+    text-align: left; /* Left-align text inside bubble */
+}
+
+/* CSS for a pseudo-element triangle pointing to the bubble */
+.excursionreview_review::before {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Adjust this to move the triangle up/down */
+    left: 20px; /* Adjust this to move the triangle left/right */
+    border-width: 10px;
+    border-style: solid;
+    border-color: #f1f1f1 transparent transparent transparent; /* Triangle color */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .excursionreview_review {
+        max-width: 90%; /* Increase max width on smaller screens */
+    }
 }

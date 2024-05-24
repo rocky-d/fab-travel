@@ -144,3 +144,94 @@ function outputExcursions(excursions) {
         })
         .join("");
 }
+
+// Function to open excursionreviewsDB
+function openReviewsDatabase() {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open("excursionreviewsDB", 1);
+
+        request.onerror = (event) => {
+            console.error("Database error: ", event.target.error);
+            reject(event.target.error);
+        };
+
+        request.onsuccess = (event) => {
+            console.log("Reviews database opened successfully");
+            resolve(event.target.result);
+        };
+
+        request.onupgradeneeded = (event) => {
+            const db = event.target.result;
+            if (!db.objectStoreNames.contains("reviews")) {
+                const objectStore = db.createObjectStore("reviews", {
+                    keyPath: "id", autoIncrement: true,
+                });
+                objectStore.createIndex("code", "code", {unique: false});
+            }
+        };
+    });
+}
+
+// Function to add a new review
+function addReview(db, code, content) {
+    const transaction = db.transaction(["reviews"], "readwrite");
+    const objectStore = transaction.objectStore("reviews");
+    const request = objectStore.add({code: code, content: content});
+
+    request.onsuccess = () => {
+        console.log("Review added successfully");
+        loadReviews(db, code); // Reload reviews after adding
+    };
+
+    request.onerror = (event) => {
+        console.error("Error adding review: ", event.target.error);
+    };
+}
+
+// Function to load reviews for a specific code
+function loadReviews(db, code) {
+    const transaction = db.transaction(["reviews"], "readonly");
+    const objectStore = transaction.objectStore("reviews");
+    const index = objectStore.index("code");
+    const request = index.getAll(code);
+
+    request.onsuccess = (event) => {
+        const reviews = event.target.result;
+        displayReviews(reviews);
+    };
+
+    request.onerror = (event) => {
+        console.error("Error fetching reviews: ", event.target.error);
+    };
+}
+
+// Function to display reviews in the container
+function displayReviews(reviews) {
+    const container = document.getElementById("excursionreviews__container");
+    container.innerHTML = reviews
+        .reverse()
+        .map((review) => `<div class="excursionreview_review">${review.content}</div>`)
+        .join("");
+}
+
+// Get the excursion code from the URL
+const code = new URLSearchParams(window.location.search).get("code");
+
+// Open the reviews database and load existing reviews
+openReviewsDatabase()
+    .then((db) => {
+        loadReviews(db, code);
+
+        // Add event listener to the comment form
+        document.getElementById("commentForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+            const commentText = document.getElementById("commentText").value;
+            if (commentText.trim()) {
+                addReview(db, code, commentText);
+                document.getElementById("commentForm").reset();
+            }
+        });
+    })
+    .catch((error) => {
+        console.error("Error opening reviews database: ", error);
+    });
