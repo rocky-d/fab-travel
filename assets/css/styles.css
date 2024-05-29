@@ -247,7 +247,7 @@ h3 {
     align-items: center;
 }
 
-.header__vkontakte {
+.header__tiktok {
     width: 32px;
     height: 32px;
 }
@@ -513,7 +513,7 @@ section {
     transition: transform 0.3s;
 }
 
-.footer__vkontakte {
+.footer__tiktok {
     width: 38px;
     height: 38px;
 }
