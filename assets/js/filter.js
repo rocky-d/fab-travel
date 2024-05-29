@@ -353,7 +353,7 @@ function getCookieValue(name) {
 
 function takeALook(n) {
     const login = getCookieValue("loginStatus");
-    if (login == "yes") {
+    if (login === "yes") {
         window.location.href = "excursion.html?code=" + n.getAttribute("data-code");
     } else {
         window.location.href = "login.html";
