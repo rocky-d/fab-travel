@@ -600,16 +600,16 @@ function onMenuLinkClick() {
     }
 }
 
-// 监听所有excursion按钮的点击事件
+// Listen for click events on all excursion buttons
 document.addEventListener("click", function (event) {
-    // 确保点击的是excursion按钮
+    // Make sure the clicked button is an excursion button
     if (event.target && event.target.matches("a.button")) {
-        // 获取excursion的code
+        // Get the code of the excursion
         const excursionCode = event.target.id.replace("_button", "");
-        // 更新visits值
+        // Update the visits count
         updateExcursionVisits(excursionCode)
             .then(() => {
-                // 更新页面
+                // Update the page
                 getAllExcursions()
                     .then((excursions) => {
                         outputExcursions(excursions);
@@ -624,7 +624,7 @@ document.addEventListener("click", function (event) {
     }
 });
 
-// 更新excursion的visits值
+// Update the visits count of the excursion
 async function updateExcursionVisits(excursionCode) {
     return new Promise((resolve, reject) => {
         const request = indexedDB.open("excursionsDB", 1);
@@ -639,11 +639,11 @@ async function updateExcursionVisits(excursionCode) {
             const transaction = db.transaction("excursions", "readwrite");
             const objectStore = transaction.objectStore("excursions");
 
-            // 获取对应的excursion
+            // Get the corresponding excursion
             const excursionRequest = objectStore.get(excursionCode);
 
             excursionRequest.onsuccess = function (event) {
-                // 更新visits值
+                // Update the visits count
                 const excursion = excursionRequest.result;
                 excursion.visits++;
                 const updateRequest = objectStore.put(excursion);
