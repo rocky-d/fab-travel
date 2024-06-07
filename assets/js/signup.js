@@ -80,7 +80,9 @@ async function login() {
                     alert("Login successful");
                     console.log("Login successful");
                     window.location.href = "filter.html";
-                    document.cookie = "loginStatus=yes";
+                    let date = new Date();
+                    date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000)); // 30 days
+                    document.cookie = "loginStatus=yes; expires=" + date.toUTCString();
                 } else {
                     alert("Invalid username or password");
                     console.error("Invalid username or password");
