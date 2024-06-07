@@ -351,6 +351,13 @@ function getCookieValue(name) {
     return result ? result.pop() : "";
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    const loginStatus = getCookieValue("loginStatus");
+    if (loginStatus !== "yes") {
+        window.location.href = "login.html";
+    }
+});
+
 function takeALook(n) {
     const login = getCookieValue("loginStatus");
     if (login === "yes") {
